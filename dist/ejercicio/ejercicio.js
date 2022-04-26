@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const net = require("net");
-net.createServer((connection) => {
-    console.log('A client has connected.');
-    connection.write(`Connection established.`);
-    connection.end();
-    connection.write(`Second message sent.`);
-    connection.on('close', () => {
-        console.log('A client has disconnected.');
-    });
-}).listen(60300, () => {
-    console.log('Waiting for clients to connect.');
-});
+const fs = require("fs");
+const programClass_1 = require("./programClass");
+const fileRute = process.argv[2];
+const campNumber = process.argv[3];
+if (fs.existsSync(fileRute)) {
+    const programCutPrincipal = new programClass_1.ProgramCut(fileRute);
+    programCutPrincipal.watchFileProgram(campNumber);
+}
+else {
+    console.log('La ruta del archivo no existe');
+}
