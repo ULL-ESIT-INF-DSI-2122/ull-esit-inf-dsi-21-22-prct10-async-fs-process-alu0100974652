@@ -1,0 +1,12 @@
+{
+    "entryPoints":[
+      "./src/ejercicio-1/ejercicio-1.ts",
+      "./src/ejercicio-2/grepCommand.ts",
+      "./src/ejercicio-2/main.ts",
+      "./src/ejercicio-3/ejercicio-3.ts",
+      "./src/ejercicio-3/note.ts",
+      "./src/ejercicio-3/managerNote.ts",
+      "./src/ejercicio-3/index.ts"
+    ],
+    "out": "docs/"
+  }
