@@ -7,7 +7,7 @@ import { GrepCommand } from './grepCommand';
  */
 yargs.command({
   command: 'pipe',
-  describe: 'Leer un fichero y hacerle grep',
+  describe: 'Grep de un fichero con tuperia',
   builder: {
     file: {
       describe: 'file',
@@ -21,13 +21,11 @@ yargs.command({
     },
   },
   handler(argv) {
-    if (typeof argv.file === 'string' &&
-        typeof argv.word === 'string' &&
-        process.argv.length === 5) {
-          const pipeFunction = new GrepCommand(argv.file, argv.word)
-          console.log(pipeFunction.pipe())
+    if (typeof argv.file === 'string' && typeof argv.word === 'string' && process.argv.length === 5) {
+        const pipeFunction = new GrepCommand(argv.file, argv.word)
+        console.log(pipeFunction.pipe())
     } else {
-      console.log(chalk.red('Argumentos inválidos'))
+        console.log(chalk.red('Argumentos inválidos'))
     }
   },
 });
@@ -37,7 +35,7 @@ yargs.command({
  */
 yargs.command({
   command: 'nopipe',
-  describe: 'Leer un fichero y hacerle grep',
+  describe: 'Grep de un fichero sin tuberia',
   builder: {
     file: {
       describe: 'file',
@@ -55,7 +53,7 @@ yargs.command({
         const nopipeFunction = new GrepCommand(argv.file, argv.word)  
         console.log(nopipeFunction.nopipe())
     } else {
-      console.log(chalk.red('Argumentos inválidos'))
+        console.log(chalk.red('Argumentos inválidos'))
     }
   },
 });

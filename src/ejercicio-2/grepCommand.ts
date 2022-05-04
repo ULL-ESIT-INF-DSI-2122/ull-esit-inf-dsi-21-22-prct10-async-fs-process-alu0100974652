@@ -2,10 +2,19 @@ import * as fs from 'fs';
 import * as chalk from 'chalk'
 import {spawn} from 'child_process';
 
+/**
+ * clase GrepCommand con el comando grep y cat
+ */
 export class GrepCommand {
-  
+  /**
+   * 
+   * @param filename nombre del archivo
+   * @param word palabra a encontrar
+   */
   constructor(private filename:string , private word: string){}
-  
+  /**
+   * Método pipe con tuberia
+   */
   pipe(){
     if (fs.existsSync(this.filename)){
       const cat = spawn('cat', [this.filename]);
@@ -27,7 +36,9 @@ export class GrepCommand {
       console.log(chalk.red('El fichero no existe'))
     }
   }
-
+  /**
+   * Método nopipe sin tubería
+   */
   nopipe(){
     if (fs.existsSync(this.filename)){
       const cat = spawn('cat', [this.filename]);

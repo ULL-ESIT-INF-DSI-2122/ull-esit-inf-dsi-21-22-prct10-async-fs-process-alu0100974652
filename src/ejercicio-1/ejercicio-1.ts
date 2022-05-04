@@ -1,25 +1,23 @@
 import {access, constants, watch} from 'fs';
 
-setTimeout(function program() {
-    if (process.argv.length !== 3) {
-      console.log('Please, specify a file');
+if (process.argv.length !== 3) {
+  console.log('Please, specify a file');
+} else {
+  const filename = process.argv[2];
+
+  access(filename, constants.F_OK, (err) => {
+    if (err) {
+      console.log(`File ${filename} does not exist`);
     } else {
-      const filename = process.argv[2];
+      console.log(`Starting to watch file ${filename}`);
 
-      access(filename, constants.F_OK, (err) => {
-        if (err) {
-          console.log(`File ${filename} does not exist`);
-        } else {
-          console.log(`Starting to watch file ${filename}`);
+      const watcher = watch(process.argv[2]);
 
-          const watcher = watch(process.argv[2]);
-
-          watcher.on('change', () => {
-            console.log(`File ${filename} has been modified somehow`);
-          });
-
-          console.log(`File ${filename} is no longer watched`);
-        }
+      watcher.on('change', () => {
+        console.log(`File ${filename} has been modified somehow`);
       });
+
+      console.log(`File ${filename} is no longer watched`);
     }
-}, 10000)
+  });
+}
